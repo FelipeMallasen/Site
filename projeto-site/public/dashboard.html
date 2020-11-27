@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+    <title>Dashboard</title>
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<style>
+	canvas{
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+    }
+    </style>
+</head>
+    
+<body>
+    <aside class="aside_dash">
+        <img class="logo_dash" src="imagem/LETS.png" alt="">
+        <ul class="ul_dash">
+            <a class="a_dash" href="dashboard.html"><li class="li_dash">Perfil</li></a>
+            <a class="a_dash" href="#"><li class="li_dash">Apostas</li></a>
+            <a class="a_dash" href="#"><li class="li_dash">Carteira</li></a>
+        </ul>
+    </aside>
+        <label class="label_dash">Nome:</label> 
+        <br><br>
+        <input class="inp_dash" type="text"></input>
+        <br><br>
+        <label class="label_dash">Steam:</label>
+        <br><br>
+        <input  class="inp_dash" type="text"></input>
+        <br><br>
+        <label class="label_dash">Riot:</label>
+        <br><br>
+        <input class="inp_dash" type="text"></input>
+        <br><br>
+        <label class="label_dash">Battle.net:</label>
+        <br><br>
+        <input class="inp_dash" type="text"></input>
+
+<div class="container_dash">
+    <button id="btn" class="btn_dash">Valorant & Warzone</button>
+    <button  style="display: none;">CS:GO & LOL</button>
+    <div class="grafico_1" style="width:35%; display: block;">
+        <canvas id="can_vitoria1"></canvas>
+    </div>
+    <div class="grafico_2" style="width:35%; display: block;">
+    <canvas id="can_derrota1"></canvas>
+    </div>
+    <div class="grafico_3" style="width:35%; display: block;">
+        <canvas id="can_vitoria2"></canvas>
+    </div>
+    <div class="grafico_4" style="width:35%; display: block;">
+        <canvas id="can_derrota2"></canvas>
+    </div>
+    <div class="grafico_5" style="width:35%; display: none;">
+        <canvas id="can_vitoria3"></canvas>
+    </div>
+    <div class="grafico_6" style="width:35%; display: none;">
+        <canvas id="can_derrota3"></canvas>
+    </div>
+    <div class="grafico_7" style="width:35%; display: none;">
+        <canvas id="can_vitoria4"></canvas>
+    </div>
+    <div class="grafico_8" style="width:35%; display: none;">
+        <canvas id="can_derrota4"></canvas>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+	var config_derrotas_1 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Derrotas',
+				backgroundColor: window.chartColors.red,
+				borderColor: window.chartColors.red,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de Derrotas CS:GO',
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de Derrotas'
+					}
+				}]
+			}
+		}
+	};
+	
+	
+    var config_vitórias_1 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Vitórias',
+				backgroundColor: window.chartColors.green,
+				borderColor: window.chartColors.green,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de vitórias CS:GO'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de Vitórias'
+					}
+				}]
+			}
+		}
+	};
+
+    var config_derrotas_2 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Derrotas',
+				backgroundColor: window.chartColors.red,
+				borderColor: window.chartColors.red,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de derrotas LOL'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de derrotas'
+					}
+				}]
+			}
+		}
+	};
+	
+	
+    var config_vitórias_2 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Vitórias',
+				backgroundColor: window.chartColors.green,
+				borderColor: window.chartColors.green,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de vitórias LOL'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de Vitórias'
+					}
+				}]
+			}
+		}
+	};
+
+    var config_derrotas_3 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Derrotas',
+				backgroundColor: window.chartColors.red,
+				borderColor: window.chartColors.red,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de derrotas Valorant'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de Derrotas'
+					}
+				}]
+			}
+		}
+	};
+	
+	
+    var config_vitórias_3 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Vitórias',
+				backgroundColor: window.chartColors.green,
+				borderColor: window.chartColors.green,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de vitórias Valorant'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de Vitórias'
+					}
+				}]
+			}
+		}
+	};
+
+    var config_derrotas_4 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Derrotas',
+				backgroundColor: window.chartColors.red,
+				borderColor: window.chartColors.red,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de derrotas Warzone'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de Derrotas'
+					}
+				}]
+			}
+		}
+	};
+	
+	
+    var config_vitórias_4 = {
+		type: 'bar',
+		data: {
+			labels: ["Jan","Fev","Mar","Abr","Jun","Jul","Ago","Set","Out","Nov","Dez"],
+			datasets: [{
+				label: 'Vitórias',
+				backgroundColor: window.chartColors.green,
+				borderColor: window.chartColors.green,
+				data: ["61","52","43","72","61","61","52","43","72","61","43","72"],
+				fill: false,
+			}],
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Histórico de vitórias Warzone'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Meses',
+ 					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Nº de Vitórias'
+					}
+				}]
+			}
+		}
+	};
+	
+	
+
+    function plotarGrafico() {
+
+// Gráfico CS:GO
+var ctx = document.getElementById('can_vitoria1').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_vitórias_1);
+var ctx = document.getElementById('can_derrota1').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_derrotas_1);
+// Gráfico LOL
+var ctx = document.getElementById('can_vitoria2').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_vitórias_2);
+var ctx = document.getElementById('can_derrota2').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_derrotas_2);
+// Gráfico Valorant
+var ctx = document.getElementById('can_vitoria3').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_vitórias_3);
+var ctx = document.getElementById('can_derrota3').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_derrotas_3);
+// Gráfico Warzone
+var ctx = document.getElementById('can_vitoria4').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_vitórias_4);
+var ctx = document.getElementById('can_derrota4').getContext('2d');
+window.graficoLinha = new Chart(ctx, config_derrotas_4);
+}
+
+// indicando que a função "plotarGrafico" será invocada assim que a página carregar
+window.onload = plotarGrafico;
+	
+
+</script>

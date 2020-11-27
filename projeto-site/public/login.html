@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo"></div>
+        <ul class="menu">
+            <li> <a href="index.html"> Inicio</a></li>
+            <li class="current"> <a href="sobre.html"> Sobre</a></li>
+            <li> <a href="jogos.html">Jogos</a></li>
+            <li> <a href="login.html">Login</a></li>
+
+        </ul>
+
+    </header>
+    <div class="container_login" >
+        <section class="login" id="log" style="display: block;">
+            <h1 class="h1_login">Login</h1>
+                <label>Usuario:</label>
+                <br>
+                <input id="usuario" type="text" placeholder="Digite seu nick ou email">
+                <br>
+                <label>Senha:</label>
+                <br>
+                <input id="senha" type="text" placeholder="Digite sua senha">
+                <br>
+                <br>
+                <label for="lembrar">Lembrar de mim?</label>
+                <input type="checkbox" id="lembrar">
+                <br>
+                <br>
+                <a id="mostrar"><u>Cadastre-se</u></a>
+                <button>Entrar</button>
+        </section>   
+    </div>
+    
+    <section class="cadastro" id="cad" style="display: none;">
+        <h1 class="h1_cadastro">Cadastre-se aqui:</h1>
+            <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+
+            <label for="nome">Nome:</label>
+            <input name="nome" type="text" placeholder="Digite seu nome completo">
+
+            <br>
+            <label for="login">Crie um usuario:</label>
+            <input name="login"type="text" placeholder="Ex.: Kieviz">
+
+            <label for="senha">Cadastre uma senha:</label>
+            <input name="senha" type="text" placeholder="Ex.: K13v1Z#49">
+            
+            <input type="submit" id="btn_entrar" value="Cadastrar" class="btn">
+            </form>
+        <a id="cadastrado"><u>Já tenho cadastro!</u></a>
+        <!-- <button onclick="cadastrar()">Cadastrar</button> -->
+    
+    </section>
+    <img src="imagem/carregando.gif" id="img_aguarde" style="display: none;" width="100px">
+    
+    <div id="div_erro" style="background-color: #bf8899; color: maroon; display: none;">
+        Erro no cadastro
+    </div>
+
+    <img src="imagem/blackwolf.png" alt="" class="boneco_tr1">
+    <img src="imagem/ava.png" alt="" class="boneco_tr2">
+    <img src="imagem/warzoneperson1.png" alt="" class="boneco_tr3">
+    <img src="imagem/warzoneperson2.png" alt="" class="boneco_tr4">
+
+</body>
+
+</html>
+
+<script>
+    mostrar.onclick = function () {
+        log.style.display = "none";
+        cad.style.display = "block";
+    }
+    cadastrado.onclick = function () {
+        log.style.display = "block";
+        cad.style.display = "none";
+    }
+    function cadastrar() {
+        log.style.display = "block";
+        cad.style.display = "none";
+    }
+
+    function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                window.location.href='login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        img_aguarde.style.display='block';
+        div_erro.style.display='none';
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+        img_aguarde.style.display='none';
+        div_erro.style.display='block';
+    }
+</script>

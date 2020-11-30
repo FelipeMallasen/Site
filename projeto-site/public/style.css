@@ -342,7 +342,7 @@ p {
 .label_dash  {
     margin-left: 10%;
     position: absolute;
-    margin-top: 15%;
+    margin-top: 10%;
     height: 25px;
 }
 
@@ -353,7 +353,7 @@ p {
     border-radius: 5px;
     margin-left: 10%;
     position: absolute;
-    margin-top: 15%;
+    margin-top: 10%;
     height: 25px;
 }
 
@@ -361,12 +361,45 @@ p {
     background-color: green;
     border: none;
     border-radius: 5px;
-    margin-left: 18%;
+    margin-left: 18.5%;
     position: absolute;
-    margin-top: 18%;
+    margin-top: 13%;
     height: 30px;
     padding: 5px;
 }
+
+.label_jogar {
+    color: #ffffff;
+    margin-left: 10%;
+    position: absolute;
+    margin-top: 14%;
+    font-size: 20px;
+}
+
+#combo_dash {
+    color: #ffffff;
+    background-color: #202020;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10%;
+    position: absolute;
+    margin-top: 15%;
+    height: 25px;
+}
+
+.btn_jogar {
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    margin-left: 18.7%;
+    position: absolute;
+    margin-top: 17%;
+    height: 30px;
+    padding: 5px;
+}
+
+
+   
 /* Dashboard - Fim */
 
 /* Apostas - Inicio */
@@ -404,7 +437,7 @@ p {
     height: 25px;
     width: 200px;
     margin-top: 50px;
-    margin-left: 5px;
+    margin-left: 15px;
     cursor: pointer;
 }
 

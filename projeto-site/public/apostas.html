@@ -14,7 +14,6 @@
         <ul class="ul_dash">
             <a class="a_dash" href="dashboard.html"><li class="li_dash">Perfil</li></a>
             <a class="a_dash" href="apostas.html"><li class="li_dash">Apostas</li></a>
-            <a class="a_dash" href="#"><li class="li_dash">Carteira</li></a>
         </ul>
     </aside>
         <h1 class="h1_apostas">Jogos do dia</h1>
@@ -92,21 +91,24 @@
             resultado.innerHTML = `
             Campanha da ${time1.nome}: <br>
             Vitórias: ${time1.vitorias} / Derrotas: ${time1.derrotas} <br>
-            A porcentagem de vitórias da ${time1.nome} é de ${time1.vitorias / time1.total * 100}%.
+            A porcentagem de vitórias da ${time1.nome} é de ${(time1.vitorias / time1.total * 100).toFixed(2)}%.
 
             <br>
             Campanha da ${time2.nome}: <br>
             Vitórias: ${time2.vitorias} / Derrotas: ${time2.derrotas} <br>
-            A porcentagem de vitórias da ${time2.nome} é de ${time2.vitorias / time2.total * 100}%.
+            A porcentagem de vitórias da ${time2.nome} é de ${(time2.vitorias / time2.total * 100).toFixed(2)}%.
             
+
+            <input type="range">
             <button class="btn_apostar2" onclick="mostrar()" id="um">Apostar em ${equipe1.value}</button>
-            <button class="btn_apostar2" onclick="mostrar2()" >Apostar em ${equipe2.value}</button> `; 
+            <button class="btn_apostar2" onclick="mostrar2()" >Apostar em ${equipe2.value}</button> 
+            `; 
         }
         
     }
        
          function mostrar () {
-            alert(`Você investiu em ${equipe1.value}`);
+            alert(`Você apostou em ${equipe1.value}`);
             resultado.innerHTML = "";
             equipe1.value = "";
             equipe2.value = "";
@@ -117,7 +119,7 @@
         }
 
         function mostrar2() {
-            alert(`Você investiu em ${equipe2.value}`)
+            alert(`Você apostou em ${equipe2.value}`)
             resultado.innerHTML = "";
             equipe1.value = "";
             equipe2.value = "";

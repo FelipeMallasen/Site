@@ -25,7 +25,6 @@
         <ul class="ul_dash">
             <a class="a_dash" href="dashboard.html"><li class="li_dash">Perfil</li></a>
             <a class="a_dash" href="apostas.html"><li class="li_dash">Apostas</li></a>
-            <a class="a_dash" href="#"><li class="li_dash">Carteira</li></a>
         </ul>
     </aside>
         <label class="label_dash">Nome:</label> 
@@ -44,6 +43,19 @@
         <br><br>
         <input class="inp_dash" id="battle" type="text">
 		<button class="btn_salvar" onclick="salvar()">Salvar</button>
+		<br>
+		<label class="label_jogar">Escolha um jogo:</label> 
+		<br>
+		<select id="combo_dash" >
+			<option value="escolha">-Escolha-</option>
+			<option value="csgo">CS:GO</option>
+			<option value="lol">LOL</option>
+			<option value="valorant">Valorant</option>
+			<option value="warzone">Warzone</option>
+		</select>
+		<button class="btn_jogar" onclick="servidor()">Jogar</button>
+		<div id="msg"></div>
+		
 
 <div class="container_dash">
     <div style="width:35%;">
@@ -70,14 +82,14 @@
 				label: 'Vitórias',
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: [],
 				fill: false,
 			},
 			{
 				label: 'Derrotas',
 				backgroundColor: window.chartColors.red,
 				borderColor: window.chartColors.red,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: [],
 				fill: false,
 			}]
 		},
@@ -123,14 +135,14 @@
 				label: 'Vitórias',
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: ["61","52","75","40","67","55","25","80","50","21"],
 				fill: false,
 			},
 			{
 				label: 'Derrotas',
 				backgroundColor: window.chartColors.red,
 				borderColor: window.chartColors.red,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: ["15","24","5","19","12","45","20","6","22","41"],
 				fill: false,
 			}]
 		},
@@ -175,14 +187,14 @@
 				label: 'Vitórias',
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: ["15","20","17","31","5","9","24","20","8","3"],
 				fill: false,
 			},
 			{
 				label: 'Derrotas',
 				backgroundColor: window.chartColors.red,
 				borderColor: window.chartColors.red,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: ["21","25","34","27","2","16","5","40","55","5"],
 				fill: false,
 			}]
 		},
@@ -228,14 +240,14 @@
 				label: 'Vitórias',
 				backgroundColor: window.chartColors.green,
 				borderColor: window.chartColors.green,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: ["60","52","47","73","61","55","40","29","32","51"],
 				fill: false,
 			},
 			{
 				label: 'Derrotas',
 				backgroundColor: window.chartColors.red,
 				borderColor: window.chartColors.red,
-				data: ["61","52","43","72","61","61","52","43","72","61"],
+				data: ["12","33","22","16","19","25","34","27","13","28"],
 				fill: false,
 			}]
 		},
@@ -276,12 +288,11 @@
 	
  function mostrar() {
 
-// Gráfico CS:GO
 var ctx = document.getElementById('can_vitoria1').getContext('2d');
 window.graficoLinha = new Chart(ctx,config_grafico_2);
 var ctx = document.getElementById('can_derrota1').getContext('2d');
 window.graficoLinha = new Chart(ctx, config_grafico_1);
-// Gráfico LOL
+
 var ctx = document.getElementById('can_vitoria2').getContext('2d');
 window.graficoLinha = new Chart(ctx,config_grafico_3);
 var ctx = document.getElementById('can_derrota2').getContext('2d');
@@ -299,4 +310,18 @@ function salvar() {
 	battle.value = `${battle.value}`; 
 }
 
+function servidor() {
+	if(combo_dash.value == "escolha"){
+		alert("Escolha um jogo")
+	} else if (combo_dash.value == "csgo") {
+		alert(`connect.${Math.random() * 100}`);
+		msg.innerHTML = "aloooo"
+	} else if(combo_dash.value == "lol"){
+		alert(`connect.${Math.random() * 200}`)
+	} else if(combo_dash.value == "valorant"){
+		alert(`connect.${Math.random() * 300}`)
+	} else {
+		alert(`connect.${Math.random() * 400}`)
+	}
+}
 </script>

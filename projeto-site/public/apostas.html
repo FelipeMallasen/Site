@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman&display=swap" rel="stylesheet">
+    <title>Apostas</title>
+</head>
+<body>
+    <aside class="aside_dash">
+        <img class="logo_dash" src="imagem/LETS.png" alt="">
+        <ul class="ul_dash">
+            <a class="a_dash" href="dashboard.html"><li class="li_dash">Perfil</li></a>
+            <a class="a_dash" href="apostas.html"><li class="li_dash">Apostas</li></a>
+            <a class="a_dash" href="#"><li class="li_dash">Carteira</li></a>
+        </ul>
+    </aside>
+        <h1 class="h1_apostas">Jogos do dia</h1>
+    <div class="box_partidas">
+        
+        <div class="partidas">
+            <img class="img_apostas" src="imagem/Astralis.png" alt="">
+            <h1>X</h1>
+            <img class="img_apostas" src="imagem/FURIA.png" alt="">
+        </div>
+        <div class="partidas">
+            <img class="img_apostas" src="imagem/Fnatic.png" alt="">
+            <h1>X</h1>
+            <img class="img_apostas" src="imagem/NaVi.png" alt="">
+        </div>
+        <div class="partidas">
+            <img class="img_apostas" src="imagem/Vitality.png" alt="">
+            <h1>X</h1>
+            <img class="img_apostas" src="imagem/NIP.png" alt="">
+        </div>
+        <div class="partidas">
+            <img class="img_apostas" src="imagem/Heroic.png" alt="">
+            <h1>X</h1>
+            <img class="img_apostas" src="imagem/Evil_Geniuses.png" alt="">
+        </div>
+    </div>
+    <h1 class="h1_apostas2">Compare as campanhas para saber em quem apostar!</h1>
+<div class="box_apostas">
+    
+    <input class="inp_apostas" placeholder="Nome da equipe" id="equipe1"> <br>
+    <br>
+    <input class="inp_apostas" placeholder="Vitórias" id="vitorias1"> <br>
+    <br>
+    <input class="inp_apostas" placeholder="Derrotas" id="derrotas1"> <br>
+    <br>
+    <input class="inp_apostas" placeholder="Nome da equipe" id="equipe2"> <br>
+    <input class="inp_apostas" placeholder="Vitórias" id="vitorias2"> <br>
+    <input class="inp_apostas" placeholder="Derrotas" id="derrotas2"> <br>
+    <br>
+    
+    <button class="btn_apostas" onclick="comparar()">Comparar Campanhas</button>
+    
+</div>   
+    <br>
+    <div id="resultado"></div>
+
+    
+</body>
+</html>
+<script>
+    
+    function comparar() {
+        let time1 = {
+            nome: (equipe1.value),
+            vitorias: Number(vitorias1.value),
+            derrotas: Number(derrotas1.value),
+            total: `${Number(vitorias1.value) + Number(derrotas1.value)}`
+        };
+  
+        let time2 = {
+            nome: (equipe2.value),
+            vitorias: Number(vitorias2.value),
+            derrotas: Number(derrotas2.value),
+            total: `${Number(vitorias2.value) + Number(derrotas2.value)}`
+        };
+        
+
+        resultado.innerHTML = `
+            Campanha da ${time1.nome}: <br>
+            Vitórias: ${time1.vitorias} / Derrotas: ${time1.derrotas} <br>
+            A porcentagem de vitórias da ${time1.nome} é de ${time1.vitorias / time1.total * 100}%.
+
+            <br>
+            Campanha da ${time2.nome}: <br>
+            Vitórias: ${time2.vitorias} / Derrotas: ${time2.derrotas} <br>
+            A porcentagem de vitórias da ${time2.nome} é de ${time2.vitorias / time2.total * 100}%.
+            
+            <button class="btn_apostar2" onclick="mostrar" id="um">Apostar em ${time1.nome}</button>
+            <button class="btn_apostar2"  >Apostar em ${time2.nome}</button> `; 
+
+        }
+
+         function mostrar () {
+            alert(`Você investiu em ${time1.nome}`);
+        }
+</script>

@@ -25,21 +25,18 @@
     <div class="container_login" >
         <section class="login" id="log" style="display: block;">
             <h1 class="h1_login">Login</h1>
+            <form id="form_login" method="post" onsubmit="return entrar()">
                 <label>Usuario:</label>
                 <br>
-                <input id="usuario" type="text" placeholder="Digite seu nick ou email">
+                <input id="usuario" type="text" name="login" placeholder="Digite seu nick ou email">
                 <br>
                 <label>Senha:</label>
                 <br>
-                <input id="senha" type="text" placeholder="Digite sua senha">
-                <br>
-                <br>
-                <label for="lembrar">Lembrar de mim?</label>
-                <input type="checkbox" id="lembrar">
-                <br>
-                <br>
+                <input id="senha" type="text" name="senha" placeholder="Digite sua senha">
+                <button id="btn_entrar" class="btn-green">Entrar</button>
+                </form>
                 <a id="mostrar"><u>Cadastre-se</u></a>
-                <button>Entrar</button>
+                
         </section>   
     </div>
     
@@ -90,6 +87,52 @@
     function cadastrar() {
         log.style.display = "block";
         cad.style.display = "none";
+    }
+
+    
+    function entrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.login;
+                    sessionStorage.nome_usuario_meuapp = json.nome;
+
+                    window.location.href = 'dashboard.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        img_aguarde.style.visibility = 'visible';
+        div_erro.style.visibility = 'hidden';
+    }
+
+    function finalizar_aguardar(resposta) {
+        btn_entrar.disabled = false;
+        img_aguarde.style.visibility = 'hidden';
+        div_erro.style.visibility = 'visible';
+        div_erro.innerHTML = resposta;
     }
 
     function cadastrar() {

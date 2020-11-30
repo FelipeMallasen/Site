@@ -44,28 +44,29 @@
     <h1 class="h1_apostas2">Compare as campanhas para saber em quem apostar!</h1>
 <div class="box_apostas">
     
-    <input class="inp_apostas" placeholder="Nome da equipe" id="equipe1"> <br>
+    <input class="inp_apostas" placeholder="Nome da equipe" id="equipe1" > <br>
     <br>
-    <input class="inp_apostas" placeholder="Vitórias" id="vitorias1"> <br>
+    <input class="inp_apostas" placeholder="Vitórias" id="vitorias1" type="number"> <br>
     <br>
-    <input class="inp_apostas" placeholder="Derrotas" id="derrotas1"> <br>
+    <input class="inp_apostas" placeholder="Derrotas" id="derrotas1" type="number"> <br>
     <br>
-    <input class="inp_apostas" placeholder="Nome da equipe" id="equipe2"> <br>
-    <input class="inp_apostas" placeholder="Vitórias" id="vitorias2"> <br>
-    <input class="inp_apostas" placeholder="Derrotas" id="derrotas2"> <br>
+    <input class="inp_apostas" placeholder="Nome da equipe" id="equipe2" > <br>
+    <input class="inp_apostas" placeholder="Vitórias" id="vitorias2" type="number"> <br>
+    <input class="inp_apostas" placeholder="Derrotas" id="derrotas2"  type="number"> <br>
     <br>
     
     <button class="btn_apostas" onclick="comparar()">Comparar Campanhas</button>
-    
-</div>   
     <br>
     <div id="resultado"></div>
+</div>   
+    
 
     
 </body>
 </html>
 <script>
     
+
     function comparar() {
         let time1 = {
             nome: (equipe1.value),
@@ -81,8 +82,14 @@
             total: `${Number(vitorias2.value) + Number(derrotas2.value)}`
         };
         
-
-        resultado.innerHTML = `
+        if (equipe1.value == "" || equipe2.value == "") {
+            alert("Por favor insira uma equipe!")
+        } else if (vitorias1.value < 0 || vitorias2.value < 0){
+            alert("Por favor insira um número valido!")
+        } else if (derrotas1.value < 0 || derrotas2.value < 0) {
+            alert("Por favor insira um número valido!")
+        } else {
+            resultado.innerHTML = `
             Campanha da ${time1.nome}: <br>
             Vitórias: ${time1.vitorias} / Derrotas: ${time1.derrotas} <br>
             A porcentagem de vitórias da ${time1.nome} é de ${time1.vitorias / time1.total * 100}%.
@@ -92,12 +99,31 @@
             Vitórias: ${time2.vitorias} / Derrotas: ${time2.derrotas} <br>
             A porcentagem de vitórias da ${time2.nome} é de ${time2.vitorias / time2.total * 100}%.
             
-            <button class="btn_apostar2" onclick="mostrar" id="um">Apostar em ${time1.nome}</button>
-            <button class="btn_apostar2"  >Apostar em ${time2.nome}</button> `; 
-
+            <button class="btn_apostar2" onclick="mostrar()" id="um">Apostar em ${equipe1.value}</button>
+            <button class="btn_apostar2" onclick="mostrar2()" >Apostar em ${equipe2.value}</button> `; 
+        }
+        
+    }
+       
+         function mostrar () {
+            alert(`Você investiu em ${equipe1.value}`);
+            resultado.innerHTML = "";
+            equipe1.value = "";
+            equipe2.value = "";
+            vitorias1.value = "";
+            vitorias2.value = "";
+            derrotas1.value = "";
+            derrotas2.value = "";
         }
 
-         function mostrar () {
-            alert(`Você investiu em ${time1.nome}`);
+        function mostrar2() {
+            alert(`Você investiu em ${equipe2.value}`)
+            resultado.innerHTML = "";
+            equipe1.value = "";
+            equipe2.value = "";
+            vitorias1.value = "";
+            vitorias2.value = "";
+            derrotas1.value = "";
+            derrotas2.value = "";
         }
 </script>

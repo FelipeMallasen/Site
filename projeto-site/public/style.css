@@ -116,10 +116,19 @@ header {
 h2 {
     color: #ffffff;
     text-align: center;
-    
 }
 
+.lol {
+    margin-left: 70px;
+}
 
+.valor {
+    margin-left: 120px;
+}
+
+.warzone {
+    margin-left: 450px;
+}
 
 /* Home - Fim */
 
@@ -264,6 +273,12 @@ p {
     margin-top: -22%;
     margin-left: 67%;
 }
+
+#img_aguarde {
+    position: absolute;
+    margin-left: 46%;
+    margin-top: 2%;
+}
 /* Login - Fim */
 
 /* Dashboard - Inicio */
@@ -324,40 +339,64 @@ p {
     font-size: 25px;
 }
 
-.label_dash, .inp_dash {
+.label_dash  {
     margin-left: 10%;
     position: absolute;
     margin-top: 15%;
     height: 25px;
 }
 
+.inp_dash {
+    color: #ffffff;
+    background-color: #202020;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10%;
+    position: absolute;
+    margin-top: 15%;
+    height: 25px;
+}
+
+.btn_salvar {
+    background-color: green;
+    border: none;
+    border-radius: 5px;
+    margin-left: 18%;
+    position: absolute;
+    margin-top: 18%;
+    height: 30px;
+    padding: 5px;
+}
 /* Dashboard - Fim */
 
 /* Apostas - Inicio */
 .h1_apostas{
     color: #ffffff;
-    margin-left: 25%;
+    margin-left: 47%;
     padding-top: 5%;
 }
 
 .h1_apostas2{
     color: #ffffff;
-    margin-left: 10%;
+    margin-left: 30%;
     padding-top: 3%;
 }
 
 .box_apostas{
-    max-width: 1000px;
+    max-width: 1200px;
+    margin-left: 25%;
     padding-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
 }
 .inp_apostas{
-    margin-left: 5%;
+    margin-left: 10%;
     height: 25px;
 }
 
 .btn_apostas {
     height: 30px;
-    margin-left: 5%;
+    margin-left: 40%;
     cursor: pointer;
 }
 
@@ -365,12 +404,13 @@ p {
     height: 25px;
     width: 200px;
     margin-top: 50px;
+    margin-left: 5px;
     cursor: pointer;
 }
 
 .box_partidas {
     max-width: 1000px;
-    margin-left: 10%;
+    margin-left: 32%;
     padding-top: 5%;
 }
 
@@ -389,7 +429,8 @@ p {
 
 #resultado {
     max-width: 500px;
-    margin-left: 10%;
+    margin-top: 3%;
+    margin-left: 30%;
     font-size: 25px;
 }
 /* Apostas - Fim */
